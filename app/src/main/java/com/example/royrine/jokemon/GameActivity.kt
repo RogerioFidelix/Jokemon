@@ -13,29 +13,29 @@ class GameActivity : AppCompatActivity() {
 
     private val delayTela = 1000L
     private var numeroAleatorio: Random?=null
-    var pontos:Int = 0
-    var jogadas:Int = 0
+    var score:Int = 0
+    var plays:Int = 0
     private var FOGO = 1
     private var GRAMA = 2
     private var AGUA = 3
 
     private fun win(){
-        pontos+=2
-        jogadas++
+        score+=2
+        plays++
         tvResult!!.text = "Winner"
         //tvResult!!.setTextColor(ContextCompat.getColor(this,R.color.loss))
-        tvPoints!!.text = pontos.toString()
-        tvTries!!.text = jogadas.toString()
+        tvPoints!!.text = score.toString()
+        tvTries!!.text = plays.toString()
     }
 
     private fun loss(){
-        jogadas++
+        plays++
         tvResult!!.text = "Loser"
-        tvTries!!.text = jogadas.toString()
+        tvTries!!.text = plays.toString()
         Handler().postDelayed({
 
             val gameOverScreenie = Intent(this,GameOverActivity::class.java)
-            gameOverScreenie.putExtra("PONTUACAO", pontos)
+            gameOverScreenie.putExtra("SCORE", score)
             startActivity(gameOverScreenie)
             finish()
         },delayTela)
@@ -43,11 +43,11 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun draw(){
-        pontos++
-        jogadas++
+        score++
+        plays++
         tvResult!!.text = "Almost"
-        tvPoints!!.text = pontos.toString()
-        tvTries!!.text = jogadas.toString()
+        tvPoints!!.text = score.toString()
+        tvTries!!.text = plays.toString()
     }
 
     private fun makePlay(playerPlay:Int){
@@ -90,8 +90,8 @@ class GameActivity : AppCompatActivity() {
         supportActionBar!!.title = "Go Back"
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
-        tvPoints!!.text = pontos.toString()
-        tvTries!!.text = jogadas.toString()
+        tvPoints!!.text = score.toString()
+        tvTries!!.text = plays.toString()
 
         numeroAleatorio=Random()
 
